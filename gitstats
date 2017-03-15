@@ -1,0 +1,5 @@
+#!/bin/sh
+
+git log --pretty=format: --shortstat --no-merges --author=$1 \
+  | sed '/^$/d' \
+  | awk -F' ' '{s1+=$4;s2+=$6}END{printf "additions: %s; deletions: %s\n",s1,s2}'
